@@ -1,0 +1,28 @@
+# MATRICES
+# Matrices are an extension of vectors. It's a collection of elements of the same data type organised in rows and columns.
+
+# How to make one:
+matrix(1:9, byrow=TRUE, nrow=3)    # 1:9 is a shortcut - you can define each element using c()
+                                   # byrow=TRUE - this tells the function to organise the elements by row number
+
+# You can use existing vectors to create a matrix:
+matrix(c(vector1, vector2,... ), byrow=TRUE, nrow=4)
+
+# Assigning columns and row names
+colnames(matrix) <- c() 
+rownames(matrix <- c()            # Again, you can assign vectors instead of c()
+
+# Calculating sums
+rowSums(matrix)                   # This will create a new matrix
+colSums(matrix)
+
+# Adding rows or columns to a matrix
+cbind(matrix1, vector1)  #OR
+rbind(matrix1, matrix2)
+
+# Selecting elements from matrix
+matrix(row, column)               # You can select entire rows or columns by leaving the corresponding field blank
+
+# Similar to vectors, multiples and scalars are applicable
+matrix*0.2
+matrix+6
