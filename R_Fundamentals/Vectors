@@ -1,0 +1,32 @@
+# Vectors
+# A collection of values that all have the same data type. Can be created in a number of ways:
+ 
+Vector <- c(21, 38, 2)                # c is the combine/concatenate function
+Vector(class of object, length = n)   # Creating an empty vector
+Vector <- seq(1, 10, by = 1)          # Using the sequence function
+numeric(5)                            # a numeric vector with five elements
+
+# Naming elements within a vector
+names(vector) <-c(name1, name2... )   # Both sides must have equal length
+# A quicker way
+NameVector <- c(name1, name2... )
+names(vector) <- NameVector
+
+# Vector Arithmetic
+# The vectors must be of equal lengths. When adding two vectors together it will add together each corresponding element.
+A_vector <- c(1, 2, 3)
+B_vector <- c(4, 5, 6)
+A_vector + B_vector
+
+# Same applies for the other arithmetic operators
+
+# You can use multipliers and scalars on vectors
+A_vector * 2
+A_vector + 0.2
+
+# To select a specific element within a vector:
+A_vector[2]
+# Multiple selection
+A_vector[c(2,3)]  #OR
+A_vector[2:3]
+
