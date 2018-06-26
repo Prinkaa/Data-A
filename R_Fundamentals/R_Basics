@@ -1,0 +1,22 @@
+# R FUNDAMENTALS
+
+# Arithmetic with R
+
+1+2          # Addition
+4-3          # Subtraction
+2 * 5        # Multiplication
+8/4          # Division 
+9^2          # Exponentiation
+16%%3        # Modulo - returns the remainder of a division
+
+# Assigning a value to a variable
+x <- 42
+x            # print x
+
+# Five main data types in R:
+# Numeric   - includes decimal values and integers
+# Complex   - includes imaginary numbers i.e. i
+# Logical   - returns TRUE or FALSE
+# Character - text stringd
+# You can check what data type your variable is by using:
+class(x)
