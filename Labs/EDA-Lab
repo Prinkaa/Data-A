@@ -1,0 +1,128 @@
+# SESSION 5 EDA LAB
+
+?starwars
+glimpse(starwars)
+head(starwars, 10)
+
+starwars %>%
+  filter(eye_color == 'blue', hair_color == 'blond')
+  
+starwars %>%
+  filter(hair_color=='white', height<70)
+  
+starwars %>%
+  select(name,species, homeworld)
+  
+starwars %>%
+  select(name, gender, species) %>%
+  filter(is.na(gender))                  
+  
+starwars_tidy <- starwars %>%
+  replace_na(list(gender="none"))
+  
+starwars %>%
+  select(name,species,homeworld) %>%
+  filter(homeworld=='Stewjon')
+  
+starwars_tidy %>%
+  mutate(height_in_meters=height/100) %>%
+  select(name, height_in_meters)
+  
+starwars %>%
+  mutate(bmi=mass/((height/100)^2)) %>%
+  select(name:mass,bmi)
+  
+starwars_tidy %>%
+  select(name, birth_year) %>%
+  arrange(birth_year)
+  
+starwars_tidy %>%
+  select(name, birth_year) %>%
+  arrange(desc(birth_year))
+  
+starwars_tidy %>%
+  group_by(gender) %>%
+  summarise(mean_height = mean(height/100, na.rm=T))
+  
+starwars %>%
+  group_by(skin_color) %>%
+  summarise(avg_mass = mean(mass, na.rm = T)) %>%
+  arrange(desc(avg_mass))
+  
+starwars_tidy %>%
+  group_by(gender) %>%
+  count() %>%
+  ggplot(aes(gender, n, fill=gender)) +
+  geom_bar(stat ="identity", width = 0.5) +
+  theme_bw()
+  
+starwars_tidy %>%
+  group_by(species) %>%
+  summarise(mean_height=mean(height, na.rm = T)) %>%
+  arrange(mean_height=desc(mean_height)) %>%
+  top_n(10, mean_height) %>%
+  ggplot(aes(factor(species, levels=species),mean_height,fill=species)) +
+  geom_bar(stat="identity",width=0.25) +
+  coord_flip() +
+  theme_minimal()
+  
+starwars_tidy %>%
+  group_by(homeworld) %>%
+  summarise(mean_mass=mean(mass, na.rm = T)) %>%
+  arrange(mean_mass = desc(mean_mass)) %>%
+  top_n(-5, mean_mass) %>%
+  ggplot(aes(factor(homeworld, levels=homeworld), mean_mass,fill=homeworld)) +
+  geom_bar(stat="identity",width=0.25) +
+  labs(x='homeworld', y='avg mass',
+       title = 'Lowest average mass by planet',
+       caption='Based on data from SWAPI') +
+  coord_flip() +
+  theme_gray()
+  
+starwars_tidy %>%
+  filter(species=="Droid") %>%
+  ggplot(aes(eye_color)) +
+  geom_histogram(stat="count",fill="grey") +
+  theme_dark()
+  
+starwars_tidy %>%
+  filter(species=='Human', gender %in% c('male','female')) %>%
+ggplot(aes(height, fill = gender)) +
+  geom_histogram(breaks=seq(140,240,by=5)) +
+  facet_grid(. ~ gender) +
+  theme_bw()
+  
+starwars_tidy %>%
+  filter(mass<500) %>%
+  ggplot(aes(mass)) +
+  geom_density(aes(fill=gender), color="gray",alpha=.4) +
+  theme_light()
+  
+starwars_tidy %>%
+  filter(species == 'Human', gender %in% c('male', 'female')) %>%
+  ggplot(aes(height,fill=gender)) +
+  geom_density(aes(fill=gender), color = "gray", alpha = .4) +
+  facet_grid(. ~ gender) +
+  theme_dark()
+  
+starwars_tidy %>%
+  filter(mass<500) %>%
+  ggplot(aes(x= eye_color, y=mass)) +
+  geom_boxplot() +
+  theme_get()
+  
+starwars_tidy %>%
+  filter(species %in% c('Droid', 'Human', 'Gungan')) %>%
+  ggplot(aes(species, height)) +
+  geom_boxplot() +
+  theme_light()
+  
+starwars_tidy %>%
+  filter(mass < 500) %>%
+  ggplot(aes(mass, height)) +
+  geom_point()
+  
+starwars_tidy %>%
+  filter(mass < 500) %>%
+  ggplot(aes(mass, height, colour = species)) +
+  geom_point()
