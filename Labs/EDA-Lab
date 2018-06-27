@@ -1,5 +1,9 @@
 # SESSION 5 EDA LAB
 
+# You will need to download the tidyverse package
+
+library(tidyverse)
+
 ?starwars
 glimpse(starwars)
 head(starwars, 10)
